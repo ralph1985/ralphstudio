@@ -4,22 +4,22 @@
 
 ## Hito 0 — Preparación
 
-- [ ] Repo creado en GitHub (org recomendado: `ralphstudio` · repo: `portfolio`)
-- [ ] Node 20 + pnpm 9 instalados (`corepack enable` + `corepack prepare pnpm@9 --activate`)
-- [ ] Estructura inicial de carpetas decidida (apps/_, packages/_, public/\_mf, content/)
-- [ ] `.editorconfig`, `.gitignore`, `README.md` inicial
+- [x] Repo creado en GitHub (org recomendado: `ralph1985` · repo: `ralphstudio`)
+- [x] Node 20 + pnpm 9 instalados (`corepack enable` + `corepack prepare pnpm@9 --activate`)
+- [x] Estructura inicial de carpetas decidida (apps/_, packages/_, public/\_mf, content/)
+- [x] `.editorconfig`, `.gitignore`, `README.md` inicial
 
 **Criterios de aceptación**
 
-- [ ] `pnpm -v` y `node -v` OK
-- [ ] Primer commit y push
+- [x] `pnpm -v` y `node -v` OK
+- [x] Primer commit y push
 
 ## Hito 1 — Monorepo base (pnpm workspaces)
 
-- [ ] `pnpm-workspace.yaml` con `apps/*` y `packages/*`
-- [ ] `tsconfig.base.json` con `paths` a `@ralphstudio/*`
+- [x] `pnpm-workspace.yaml` con `apps/*` y `packages/*`
+- [x] `tsconfig.base.json` con `paths` a `@ralphstudio/*`
 - [ ] Scripts DX en `package.json` raíz (`dev`, `prebuild`, `test:unit`, `test:e2e`, `build`)
-- [ ] ESLint + Prettier configurados
+- [x] ESLint + Prettier configurados
 
 **Criterios de aceptación**
 
