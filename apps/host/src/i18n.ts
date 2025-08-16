@@ -1,8 +1,15 @@
-import { configure, ensure, getLocale, setLocale,t } from '@ralphstudio/i18n';
-configure(async (ns, locale)=>{
-  // ns "host" y "ui" por ahora
-  const base = ns === 'ui' ? '/packages/ui' : '/apps/host';
-  const resp = await fetch(`${base}/locales/${locale}/${ns}.json`);
-  return resp.ok ? resp.json() : {};
+import { configure, ensure, t, getLocale, setLocale } from '@ralphstudio/i18n';
+
+const hostMsgs = import.meta.glob('../locales/*/host.json', { eager: true });
+const uiMsgs = import.meta.glob('../../../packages/ui/locales/*/ui.json', { eager: true });
+
+configure(async (ns, locale) => {
+  const key =
+    ns === 'ui'
+      ? `../../../packages/ui/locales/${locale}/ui.json`
+      : `../locales/${locale}/host.json`;
+  const mod = (ns === 'ui' ? uiMsgs : hostMsgs)[key] as any;
+  return mod?.default ?? {};
 });
-export { ensure, getLocale, setLocale,t };
+
+export { ensure, t, getLocale, setLocale };
