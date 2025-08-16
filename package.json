@@ -1,0 +1,9 @@
+{
+  "name": "ralphstudio",
+  "private": true,
+  "engines": {
+    "node": "^22.0.0 || ^20.10.0",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
