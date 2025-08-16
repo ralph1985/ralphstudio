@@ -13,3 +13,8 @@ jobs:
       - run: pnpm install --frozen-lockfile || pnpm install
       - run: pnpm run prebuild
       - run: pnpm run build
+      - name: Upload Bugsnag sourcemaps
+        run: pnpm bugsnag:upload
+        env:
+          BUGSNAG_KEY: ${{ secrets.BUGSNAG_KEY }}
+          PUBLIC_BASE_URL: ${{ steps.deploy.outputs.url || secrets.PUBLIC_BASE_URL }}
