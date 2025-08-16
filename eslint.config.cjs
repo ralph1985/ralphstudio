@@ -1,67 +1,145 @@
-// ESLint v9 flat config
-// Documentación: https://eslint.org/docs/latest/use/configure/configuration-files-new
-
-const tsParser = require('@typescript-eslint/parser');
-const ts = require('@typescript-eslint/eslint-plugin');
+const js = require('@eslint/js');
+const tseslint = require('typescript-eslint');
 const importPlugin = require('eslint-plugin-import');
-const promise = require('eslint-plugin-promise');
-const unicorn = require('eslint-plugin-unicorn');
 const lit = require('eslint-plugin-lit');
-const litA11y = require('eslint-plugin-lit-a11y');
-const simpleImportSort = require('eslint-plugin-simple-import-sort');
-const prettierCompat = require('eslint-config-prettier');
+const wc = require('eslint-plugin-wc');
+const playwright = require('eslint-plugin-playwright');
+const prettier = require('eslint-config-prettier');
 
 module.exports = [
-  // Ignorados (sustituye a .eslintignore)
+  // Archivos/direc. a ignorar
   {
-    ignores: ['dist/**', 'node_modules/**', 'coverage/**'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'coverage/**',
+      'public/remotes/**',
+      'playwright-report/**',
+      'test-results/**',
+      '.vercel/**',
+    ],
   },
 
-  // Reglas para TS y JS
+  // Recomendadas de JS
+  js.configs.recommended,
+
+  // Recomendadas de TS (no type-checked; si quieres type-checked, te dejo nota abajo)
+  ...tseslint.configs.recommended,
+
+  // Reglas del proyecto (TS/JS)
   {
-    files: ['**/*.ts', '**/*.js'],
+    files: ['**/*.{ts,tsx,js}'],
+
     languageOptions: {
-      parser: tsParser,
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: {
-        // entornos web y node básicos
-        window: 'readonly',
-        document: 'readonly',
-        navigator: 'readonly',
-        console: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        process: 'readonly',
+      parser: tseslint.parser,
+      parserOptions: {
+        // Para monorepo: autodetecta proyectos TS sin tener que listar todos
+        projectService: true,
+        tsconfigRootDir: __dirname,
       },
     },
+
     plugins: {
-      '@typescript-eslint': ts,
+      '@typescript-eslint': tseslint.plugin,
       import: importPlugin,
-      promise,
-      unicorn,
       lit,
-      'lit-a11y': litA11y,
-      'simple-import-sort': simpleImportSort,
+      wc,
     },
+
+    settings: {
+      // Resolver imports con paths de tsconfig.base.json
+      'import/resolver': {
+        typescript: { project: ['./tsconfig.base.json'] },
+      },
+    },
+
     rules: {
-      // Proyecto
-      'simple-import-sort/imports': 'warn',
-      'simple-import-sort/exports': 'warn',
+      // Calidad general
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
 
-      // Unicorn (aligeradas para no pelearse con el repo actual)
-      'unicorn/prefer-module': 'off',
-      'unicorn/filename-case': 'off',
+      // TS
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
 
-      // Import (dejamos a TS/Vite resolver paths)
-      'import/no-unresolved': 'off',
+      // Orden de imports + línea en blanco después del bloque
+      'import/order': [
+        'warn',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroups: [{ pattern: '@ralphstudio/**', group: 'internal', position: 'before' }],
+          pathGroupsExcludedImportTypes: ['builtin'],
+        },
+      ],
+      'import/newline-after-import': ['error', { count: 1 }],
 
-      // TS (reglas base sin ser intrusivas)
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      // “Aire” entre bloques lógicos
+      'padding-line-between-statements': [
+        'error',
+        // después de imports
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+
+        // después de bloque de const/let/var (pero no entre ellas)
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+
+        // antes de return
+        { blankLine: 'always', prev: '*', next: 'return' },
+
+        // antes de function/class
+        { blankLine: 'always', prev: '*', next: ['function', 'class'] },
+
+        // después de bloques/if/for/while/switch
+        { blankLine: 'always', prev: 'block-like', next: '*' },
+
+        // opcional: entre case y case (mejor lectura)
+        { blankLine: 'always', prev: 'case', next: 'case' },
+      ],
+
+      // no más de 1 línea en blanco seguida
+      'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 1, maxEOF: 0 }],
+
+      // miembros de clase separados (usa la versión TS)
+      // '@/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     },
   },
 
-  // Compatibilidad con Prettier (desactiva reglas de estilo en conflicto)
-  prettierCompat,
+  // Tests unitarios (Vitest)
+  {
+    files: ['**/*.{spec,test}.ts'],
+    languageOptions: {
+      globals: {
+        vi: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+      },
+    },
+    // si quieres reglas recomendadas: instala eslint-plugin-vitest y añádelas aquí
+    // plugins: { vitest: require('eslint-plugin-vitest') },
+    // rules: { ...require('eslint-plugin-vitest').configs.recommended.rules },
+  },
+
+  // E2E (Playwright)
+  {
+    files: ['tests/e2e/**/*.ts', 'e2e/**/*.ts'],
+    plugins: { playwright },
+    ...playwright.configs.recommended, // trae sus reglas recomendadas
+  },
+
+  // Prettier al final para desactivar conflictos de estilo
+  prettier,
 ];
