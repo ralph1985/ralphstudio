@@ -1,6 +1,6 @@
-import { LitElement, html, css } from 'lit';
 import { ensure, t } from '@ralphstudio/i18n';
 import { LOCALE_CHANGED, type MicroAppElement } from '@ralphstudio/mf-contracts';
+import { css,html, LitElement } from 'lit';
 class DlvShell extends LitElement implements MicroAppElement {
   static styles = css`:host{display:block;padding:8px}`;
   basepath='/apps/delivery-manager'; route='/'; env;

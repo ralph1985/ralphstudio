@@ -1,4 +1,5 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+
 import tokens from '../styles/tokens.scss?inline';
 export class BbButton extends LitElement {
   static styles = [unsafeCSS(tokens), css`

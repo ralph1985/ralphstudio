@@ -1,6 +1,6 @@
-import { LitElement, html, css } from 'lit';
 import { ensure, t } from '@ralphstudio/i18n';
-import { NAV_EVENT, LOCALE_CHANGED, type MicroAppElement } from '@ralphstudio/mf-contracts';
+import { LOCALE_CHANGED, type MicroAppElement,NAV_EVENT } from '@ralphstudio/mf-contracts';
+import { css,html, LitElement } from 'lit';
 class BbShell extends LitElement implements MicroAppElement {
   static styles = css`:host{display:block;padding:8px}`;
   basepath = '/apps/buybuddies'; route = '/'; env;

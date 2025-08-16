@@ -1,4 +1,4 @@
-import { LOCALE_CHANGED, type Locale } from "@ralphstudio/mf-contracts";
+import { type Locale,LOCALE_CHANGED } from "@ralphstudio/mf-contracts";
 type Messages = Record<string, string>;
 type Cache = Record<string, Messages>;
 type Loader = (ns: string, locale: Locale) => Promise<Messages>;
