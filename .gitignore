@@ -1,6 +1,10 @@
-node_modules/
-dist/
-.vscode/
 .DS_Store
+.vercel/
+.vscode/
+coverage/
+dist/
+node_modules/
+playwright-report/
+tests-results/
 
 # TODO: aquí habrá que ignorar más cosas
