@@ -1,0 +1,11 @@
+{
+  "name": "@ralphstudio/delivery-manager",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:remote": "vite build -c vite.remote.config.ts"
+  },
+  "dependencies": {
+    "lit": "^3"
+  }
+}
