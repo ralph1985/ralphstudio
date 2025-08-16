@@ -11,14 +11,16 @@
     "dev": "pnpm -C apps/host dev",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "lint:fix": "eslint . --ext .ts,.tsx,.js --fix",
-    "lint": "eslint . --ext .ts,.tsx,.js",
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint .",
     "prebuild": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test:unit",
+    "prepare": "husky",
     "test:e2e": "echo 'todo: playwright' && exit 0",
     "test:unit": "echo 'todo: vitest' && exit 0",
     "typecheck": "tsc -p tsconfig.base.json --noEmit"
   },
   "devDependencies": {
+    "@eslint/js": "^9",
     "@typescript-eslint/eslint-plugin": "^8.39.1",
     "@typescript-eslint/parser": "^8.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -33,6 +35,14 @@
     "eslint-plugin-vitest": "^0.5.4",
     "eslint-plugin-wc": "^3.0.1",
     "eslint": "^9.33.0",
-    "prettier": "^3.6.2"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "{ts,tsx,js}": "eslint --fix",
+    "{ts,tsx,js,css,scss,md,json,yml,yaml}": "prettier --write"
   }
 }
