@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
@@ -9,6 +10,7 @@ export default defineConfig({
     outDir: r('public/remotes/buybuddies/1.0.0'),
     rollupOptions: { external: [] },
     emptyOutDir: true,
+    sourcemap: true,
   },
   resolve: {
     alias: {
