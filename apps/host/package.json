@@ -1,0 +1,17 @@
+{
+  "name": "@ralphstudio/host",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "typescript": "^5.4.0",
+    "sass": "^1.77.0"
+  },
+  "dependencies": {
+    "lit": "^3.1.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "buybuddies": { "channels": { "stable": { "version": "1.0.0", "entry": "/remotes/buybuddies/1.0.0/remote.js" } } },
+  "bar-manager": { "channels": { "stable": { "version": "0.1.0", "entry": "/remotes/bar-manager/0.1.0/remote.js" } } },
+  "delivery-manager": { "channels": { "stable": { "version": "0.1.0", "entry": "/remotes/delivery-manager/0.1.0/remote.js" } } }
+}

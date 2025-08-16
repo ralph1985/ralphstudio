@@ -1,0 +1,5 @@
+[
+  { "slug": "buybuddies", "title": "BuyBuddies", "summary": "Compras en grupo" },
+  { "slug": "bar-manager", "title": "Gestión de Bares", "summary": "Mesas, carta y tickets" },
+  { "slug": "delivery-manager", "title": "Reparto", "summary": "Pedidos y riders" }
+]

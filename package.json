@@ -5,5 +5,15 @@
     "node": "^22.0.0 || ^20.10.0",
     "pnpm": ">=9"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "pnpm -C apps/host dev",
+    "lint": "echo 'todo: eslint' && exit 0",
+    "format:check": "echo 'todo: prettier' && exit 0",
+    "typecheck": "tsc -p tsconfig.base.json --noEmit",
+    "test:unit": "echo 'todo: vitest' && exit 0",
+    "test:e2e": "echo 'todo: playwright' && exit 0",
+    "prebuild": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test:unit",
+    "build": "pnpm -C apps/host build"
+  }
 }
