@@ -7,13 +7,32 @@
   },
   "packageManager": "pnpm@9.0.0",
   "scripts": {
+    "build": "pnpm -C apps/host build",
     "dev": "pnpm -C apps/host dev",
-    "lint": "echo 'todo: eslint' && exit 0",
-    "format:check": "echo 'todo: prettier' && exit 0",
-    "typecheck": "tsc -p tsconfig.base.json --noEmit",
-    "test:unit": "echo 'todo: vitest' && exit 0",
-    "test:e2e": "echo 'todo: playwright' && exit 0",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js --fix",
+    "lint": "eslint . --ext .ts,.tsx,.js",
     "prebuild": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test:unit",
-    "build": "pnpm -C apps/host build"
+    "test:e2e": "echo 'todo: playwright' && exit 0",
+    "test:unit": "echo 'todo: vitest' && exit 0",
+    "typecheck": "tsc -p tsconfig.base.json --noEmit"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-lit-a11y": "5.1.1",
+    "eslint-plugin-lit": "^2.1.1",
+    "eslint-plugin-playwright": "^2.2.2",
+    "eslint-plugin-promise": "7.2.1",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "eslint-plugin-unicorn": "60.0.0",
+    "eslint-plugin-vitest": "^0.5.4",
+    "eslint-plugin-wc": "^3.0.1",
+    "eslint": "^9.33.0",
+    "prettier": "^3.6.2"
   }
 }

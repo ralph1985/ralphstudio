@@ -1,0 +1,8 @@
+node_modules
+dist
+coverage
+public/remotes
+playwright-report
+test-results
+.vercel
+.DS_Store
