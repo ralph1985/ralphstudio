@@ -23,8 +23,8 @@
 
 **Criterios de aceptación**
 
-- [ ] `pnpm install` sin errores
-- [ ] `pnpm dev` arranca (aunque no renderice nada aún)
+- [x] `pnpm install` sin errores
+- [x] `pnpm dev` arranca (aunque no renderice nada aún)
 - [ ] `pnpm run prebuild` pasa (lint, format:check, typecheck, unit)
 
 ## Hito 2 — Host/Portfolio (orquestador)
@@ -37,7 +37,7 @@
 
 **Criterios de aceptación**
 
-- [ ] `/` renderiza un esqueleto
+- [x] `/` renderiza un esqueleto
 - [ ] Acceso directo a `/apps/buybuddies` muestra loader (aunque no haya remoto)
 
 ## Hito 3 — i18n (ES/EN) global
