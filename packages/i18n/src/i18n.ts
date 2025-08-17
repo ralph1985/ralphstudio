@@ -17,7 +17,9 @@ export function getLocale(): Locale {
 
 export async function ensure(ns: string) {
   cache[ns] ??= {};
-  if (!cache[ns][current]) cache[ns][current] = await loader(ns, current);
+  if (!cache[ns][current]) {
+    cache[ns][current] = await loader(ns, current);
+  }
 }
 
 export function t(ns: string, key: string, params?: Record<string, unknown>) {
