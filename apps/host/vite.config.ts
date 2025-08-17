@@ -20,4 +20,7 @@ export default defineConfig({
   define: {
     __HOST_VERSION__: JSON.stringify(process.env.npm_package_version),
   },
+  optimizeDeps: {
+    include: ['lit', '@bugsnag/js'], // TODO: revisar más adelante => Agrega aquí las dependencias que necesitas pre-optimizar
+  },
 });
