@@ -141,4 +141,13 @@ export default [
 
   // Prettier al final para desactivar conflictos de estilo
   prettier,
+
+  // Reglas que deben tener prioridad sobre Prettier
+  {
+    files: ['**/*.{ts,tsx,js}'],
+    rules: {
+      // Requerir siempre llaves en bloques if/else/for/while
+      curly: ['error', 'all'],
+    },
+  },
 ];
