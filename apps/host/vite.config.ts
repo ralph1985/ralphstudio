@@ -6,7 +6,6 @@ import { defineConfig } from 'vite';
 const r = (...p: string[]) => resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', ...p);
 
 export default defineConfig({
-  root: 'apps/host',
   publicDir: '../../public',
   server: { port: 5173 },
   resolve: {
@@ -14,6 +13,7 @@ export default defineConfig({
       '@ralphstudio/ui': r('packages/ui/src'),
       '@ralphstudio/mf-contracts': r('packages/mf-contracts/src'),
       '@ralphstudio/i18n': r('packages/i18n/src'),
+      '@ralphstudio/monitoring': r('packages/monitoring'),
     },
   },
   build: { outDir: '../../dist', emptyOutDir: true, sourcemap: true },

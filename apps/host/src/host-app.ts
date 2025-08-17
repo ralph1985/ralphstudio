@@ -1,4 +1,4 @@
-import '@ralphstudio/ui/src/components/Button.ts';
+import '@ralphstudio/ui/components/Button';
 
 import { css, html, LitElement } from 'lit';
 
