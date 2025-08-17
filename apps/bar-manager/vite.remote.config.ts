@@ -11,6 +11,7 @@ export default defineConfig({
     outDir: r('public/remotes/bar-manager/0.1.0'),
     rollupOptions: { external: [] },
     emptyOutDir: true,
+    sourcemap: true,
   },
   resolve: {
     alias: {

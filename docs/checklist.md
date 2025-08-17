@@ -52,6 +52,17 @@
 - [ ] Cambiar a EN actualiza textos y `lang` en `<html>`
 - [ ] Idioma persiste al recargar y al entrar en `/apps/:slug`
 
+## Bugsnag
+
+    •	packages/monitoring: startMonitoring() → notify, breadcrumb, setUser, addMeta, setContext.
+    •	Host: inicializa Bugsnag e inyecta monitoring + { slug, version } a cada microapp.
+    •	Microapps: fallback en standalone si no existe env.monitoring.
+    •	Vite: build.sourcemap = true (host y remotos).
+    •	CI: subir source maps (host + cada remote) con appVersion=<versión>.
+    •	Vercel (env): VITE_BUGSNAG_KEY, VITE_RELEASE_STAGE (staging/production).
+    •	Pipeline: pnpm build:remotes && pnpm build && pnpm bugsnag:upload.
+    •	DoD: error de prueba visible en Bugsnag con slug, version y stack desofuscado.
+
 ## Hito 4 — UI compartida (SCSS + BEM + tokens)
 
 - [ ] `packages/ui` con **tokens** (CSS vars) y **Button/Card/Input** (BEM + Shadow DOM)

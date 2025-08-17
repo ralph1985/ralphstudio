@@ -16,5 +16,8 @@ export default defineConfig({
       '@ralphstudio/i18n': r('packages/i18n/src'),
     },
   },
-  build: { outDir: '../../dist', emptyOutDir: true },
+  build: { outDir: '../../dist', emptyOutDir: true, sourcemap: true },
+  define: {
+    __HOST_VERSION__: JSON.stringify(process.env.npm_package_version),
+  },
 });

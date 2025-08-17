@@ -1,0 +1,10 @@
+{
+  "name": "@ralphstudio/monitoring",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.ts",
+  "private": true,
+  "dependencies": {
+    "@bugsnag/js": "^7.0.0"
+  }
+}
