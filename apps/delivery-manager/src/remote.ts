@@ -1,1 +1,3 @@
-import './dlv-shell'; export function register(){}
+import './dlv-shell';
+
+export function register() {}

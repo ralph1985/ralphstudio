@@ -1,6 +1,8 @@
+import { css, html, LitElement } from 'lit';
+
 import { ensure, t } from '@ralphstudio/i18n';
 import { LOCALE_CHANGED, type MicroAppElement, NAV_EVENT } from '@ralphstudio/mf-contracts';
-import { css, html, LitElement } from 'lit';
+
 class BbShell extends LitElement implements MicroAppElement {
   static styles = css`
     :host {

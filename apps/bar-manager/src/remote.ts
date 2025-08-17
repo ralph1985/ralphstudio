@@ -1,1 +1,3 @@
-import './bar-shell'; export function register(){}
+import './bar-shell';
+
+export function register() {}
