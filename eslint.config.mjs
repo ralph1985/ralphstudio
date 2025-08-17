@@ -1,12 +1,12 @@
-const js = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const importPlugin = require('eslint-plugin-import');
-const lit = require('eslint-plugin-lit');
-const wc = require('eslint-plugin-wc');
-const playwright = require('eslint-plugin-playwright');
-const prettier = require('eslint-config-prettier');
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
+import lit from 'eslint-plugin-lit';
+import wc from 'eslint-plugin-wc';
+import playwright from 'eslint-plugin-playwright';
+import prettier from 'eslint-config-prettier';
 
-module.exports = [
+export default [
   // Archivos/direc. a ignorar
   {
     ignores: [
@@ -35,7 +35,7 @@ module.exports = [
       parserOptions: {
         // Para monorepo: autodetecta proyectos TS sin tener que listar todos
         projectService: true,
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: new URL('.', import.meta.url).pathname,
       },
     },
 
@@ -106,9 +106,6 @@ module.exports = [
 
       // no más de 1 línea en blanco seguida
       'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 1, maxEOF: 0 }],
-
-      // miembros de clase separados (usa la versión TS)
-      // '@/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     },
   },
 
@@ -128,9 +125,6 @@ module.exports = [
         afterAll: 'readonly',
       },
     },
-    // si quieres reglas recomendadas: instala eslint-plugin-vitest y añádelas aquí
-    // plugins: { vitest: require('eslint-plugin-vitest') },
-    // rules: { ...require('eslint-plugin-vitest').configs.recommended.rules },
   },
 
   // E2E (Playwright)
