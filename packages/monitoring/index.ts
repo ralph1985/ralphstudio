@@ -19,7 +19,7 @@ export function startMonitoring(opts: {
     appVersion: opts.appVersion,
     releaseStage: opts.releaseStage,
     appType: opts.appType ?? 'host',
-    enabledReleaseStages: ['staging', 'production'],
+    enabledReleaseStages: ['development', 'staging', 'production'],
   });
 
   return {
