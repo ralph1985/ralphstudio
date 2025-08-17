@@ -1,5 +1,5 @@
 {
-	"dependencies": {
-		"lit": "^3"
-	}
+  "dependencies": {
+    "lit": "^3"
+  }
 }

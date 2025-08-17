@@ -28,9 +28,9 @@ function upload({ minifiedFile, sourceMap, minifiedUrl, appVersion }) {
       '--minified-url',
       minifiedUrl,
       '--overwrite',
-      '--upload-sources'
+      '--upload-sources',
     ],
-    { stdio: 'inherit' }
+    { stdio: 'inherit' },
   );
 }
 
