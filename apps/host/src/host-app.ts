@@ -5,6 +5,16 @@ import { css, html, LitElement } from 'lit';
 import { ensure, getLocale, setLocale, t } from './i18n';
 import { loadRemote } from './loader';
 
+interface ShellElement extends HTMLElement {
+  basepath: string;
+  route: string;
+  env: {
+    bus: EventTarget;
+    locale: string;
+    i18n: { t: typeof t };
+  };
+}
+
 export class HostApp extends LitElement {
   static styles = css`
     :host {
@@ -33,7 +43,8 @@ export class HostApp extends LitElement {
       await loadRemote(slug);
       const tag =
         slug === 'buybuddies' ? 'bb-shell' : slug === 'bar-manager' ? 'bar-shell' : 'dlv-shell';
-      const el = document.createElement(tag) as any;
+      const el = document.createElement(tag) as ShellElement;
+
       el.basepath = `/apps/${slug}`;
       el.route = location.pathname.replace(`/apps/${slug}`, '') || '/';
       el.env = { bus: this.bus, locale: getLocale(), i18n: { t } };
