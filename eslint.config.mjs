@@ -5,6 +5,11 @@ import lit from 'eslint-plugin-lit';
 import wc from 'eslint-plugin-wc';
 import playwright from 'eslint-plugin-playwright';
 import prettier from 'eslint-config-prettier';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default [
   // Archivos/direc. a ignorar
@@ -35,7 +40,7 @@ export default [
       parserOptions: {
         // Para monorepo: autodetecta proyectos TS sin tener que listar todos
         projectService: true,
-        tsconfigRootDir: new URL('.', import.meta.url).pathname,
+        tsconfigRootDir: __dirname,
       },
     },
 
